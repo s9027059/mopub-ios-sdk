@@ -116,6 +116,13 @@ static NSString *const kGADMStoreKey = @"store";
   [self.delegate nativeAdDidClick:self];
 }
 
+- (void)nativeAdWillLeaveApplication:(GADNativeAd *)nativeAd {
+  // Sending ad is about be presented to MoPub SDK
+  if ([self.delegate respondsToSelector:@selector(nativeAdWillPresentModalForAdapter:)]) {
+    [self.delegate nativeAdWillPresentModalForAdapter:self];
+  }
+}
+
 #pragma mark - <MPNativeAdAdapter>
 
 - (UIView *)privacyInformationIconView {
